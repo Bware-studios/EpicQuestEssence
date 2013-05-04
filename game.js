@@ -43,6 +43,7 @@ function init_load() {
 function init_after_load() {
 	init_touch();
 	thegame = new Game();
+	clear_log();
 }
 
 function id(theid) {

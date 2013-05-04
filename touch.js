@@ -48,13 +48,13 @@ function mousedown(e) {
 	mouse_is_down=true;
 	mouse_target_x=e.layerX;
 	mouse_target_y=e.layerY;
-    return false;
+    return true;
 }
 
 function mouseup(e) {
 	log('up');
 	mouse_is_down=false;
-    return false;
+    return true;
 }
 
 function mousemove(e) {
@@ -65,20 +65,20 @@ function mousemove(e) {
 	} else {
 		log('move up');
 	}
-    return false;
+    return true;
 }
 
 function mouseout(e) {
 	log('out');
 	mouse_is_out=true;
-    return false;
+    return true;
 }
 
 function mouseover(e) {
 	log('over');
 	mouse_is_out=false;
 	//mouse_is_down=false;
-    return false;
+    return true;
 }
 
 

@@ -103,7 +103,6 @@ Scene.prototype.unpause = function() {
 
 Scene.prototype.dialog_enter = function() {
     this.dialog.hide();
-
 	if (thescene.player.dead) {
 		this.pause();
 		this.level=1;

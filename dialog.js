@@ -24,7 +24,7 @@ Dialog.prototype.message_start = function() {
 	text+='in this (minimalist) epic quest<br>';
 	text+='<br>move keys: w a s d <br>';
 	text+='ESC - about <br>';
-	text+='<div class="centered">[<a href="javascript:thescene.dialog_enter()" >play</a>]</div>';
+	text+='<div class="centered">[<a id="d1enter" href="javascript:thescene.dialog_enter()" >play</a>]</div>';
 	text+='</div>';
     this.div.innerHTML=text;
     this.show();
