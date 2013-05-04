@@ -138,6 +138,38 @@ Scene.prototype.draw = function() {
 //	this.frames.drawFrame(2+this.nticks%2,1,670,490);
 //	this.frames.drawFrame(2+(this.nticks+1)%2,1,620,500);
 
+	if (debug) {
+	this.ctx.fillStyle='#ff0000';
+	if (left1_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(10,620,10,10);
+	this.ctx.fillStyle='#ff0000';
+	if (right1_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(50,620,10,10);
+	this.ctx.fillStyle='#ff0000';
+	if (up1_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(30,620,10,10);
+	this.ctx.fillStyle='#ff0000';
+	if (down1_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(30,600,10,10);
+
+	this.ctx.fillStyle='#ff0000';
+	if (left2_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(70,620,10,10);
+	this.ctx.fillStyle='#ff0000';
+	if (right2_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(110,620,10,10);
+	this.ctx.fillStyle='#ff0000';
+	if (up2_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(90,620,10,10);
+	this.ctx.fillStyle='#ff0000';
+	if (down2_is_pressed) this.ctx.fillStyle='#00ff00';
+	this.ctx.fillRect(90,600,10,10);
+
+	this.ctx.fillStyle='#00ff00';
+	if (mouse_is_down) this.ctx.fillRect(mouse_target_x-10,mouse_target_y-10,20,20);
+	this.ctx.fillStyle='#ff0000';
+	if (mouse_is_down) this.ctx.fillRect(thescene.player.x-10,thescene.player.y-10,20,20);
+	}
 
 }
 

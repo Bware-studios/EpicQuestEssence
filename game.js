@@ -1,6 +1,8 @@
 var w=960;
 var h=640;
 
+var debug=false;
+
 var thegame;
 var consolediv;
 var toglogbutton;
@@ -39,6 +41,7 @@ function init_load() {
 }
 
 function init_after_load() {
+	init_touch();
 	thegame = new Game();
 }
 
@@ -48,6 +51,11 @@ function id(theid) {
 
 function log(message) {
 	consolediv.innerHTML+=("<br>"+message);
+}
+
+function clear_log() {
+	consolediv.innerHTML=("Log<br>-----------");
+	consolediv.style.fontSize='12px';
 }
 
 function show_log() {
@@ -88,47 +96,83 @@ function Game() {
 
 
 // flechas
-var left_key=37;
-var right_key=39;
-var up_key=38;
-var down_key=40;
+var left_key1=37;
+var right_key1=39;
+var up_key1=40;
+var down_key1=38;
 // wasd
-var left_key=65;
-var right_key=68;
-var up_key=83;
-var down_key=87;
+var left_key2=65;
+var right_key2=68;
+var up_key2=83;
+var down_key2=87;
 
 // esc
 var enter_key=13;
 var esc_key=27;
+var delete_key=8;
 
-var left_is_pressed=false;
-var right_is_pressed=false;
-var up_is_pressed=false;
-var down_is_pressed=false;
+var left1_is_pressed=false;
+var right1_is_pressed=false;
+var up1_is_pressed=false;
+var down1_is_pressed=false;
+var left2_is_pressed=false;
+var right2_is_pressed=false;
+var up2_is_pressed=false;
+var down2_is_pressed=false;
 
 function keydown(e) {
     //log('down: '+e.keyCode);
-    if (e.keyCode==left_key)    left_is_pressed=true;
-    if (e.keyCode==right_key)   right_is_pressed=true;
-    if (e.keyCode==up_key)      up_is_pressed=true;
-    if (e.keyCode==down_key)    down_is_pressed=true;
+    if (e.keyCode==left_key1)    left1_is_pressed=true;
+    if (e.keyCode==right_key1)   right1_is_pressed=true;
+    if (e.keyCode==up_key1)      up1_is_pressed=true;
+    if (e.keyCode==down_key1)    down1_is_pressed=true;
+
+    if (e.keyCode==left_key2)    left2_is_pressed=true;
+    if (e.keyCode==right_key2)   right2_is_pressed=true;
+    if (e.keyCode==up_key2)      up2_is_pressed=true;
+    if (e.keyCode==down_key2)    down2_is_pressed=true;
+
 }
 
 function keyup(e) {
     //log('up: '+e.keyCode);
-    if (e.keyCode==left_key)    left_is_pressed=false;
-    if (e.keyCode==right_key)   right_is_pressed=false;
-    if (e.keyCode==up_key)      up_is_pressed=false;
-    if (e.keyCode==down_key)    down_is_pressed=false;
+    if (e.keyCode==left_key1)    left1_is_pressed=false;
+    if (e.keyCode==right_key1)   right1_is_pressed=false;
+    if (e.keyCode==up_key1)      up1_is_pressed=false;
+    if (e.keyCode==down_key1)    down1_is_pressed=false;
+
+    if (e.keyCode==left_key2)    left2_is_pressed=false;
+    if (e.keyCode==right_key2)   right2_is_pressed=false;
+    if (e.keyCode==up_key2)      up2_is_pressed=false;
+    if (e.keyCode==down_key2)    down2_is_pressed=false;
     if (e.keyCode==esc_key) toggle_log();
     if (e.keyCode==enter_key) {if (thescene!=null) thescene.dialog_enter()};
+    if (e.keyCode==delete_key) {if (thescene!=null) debug=true; clear_log()};
 
 }
 
 function react_to_control () {
     var mov_x=0;
     var mov_y=0;
+	var left_is_pressed=left1_is_pressed || left2_is_pressed;
+	var right_is_pressed=right1_is_pressed || right2_is_pressed;
+	var up_is_pressed=up1_is_pressed || up2_is_pressed;
+	var down_is_pressed=down1_is_pressed || down2_is_pressed;
+
+	if (mouse_is_down) {
+		if (mouse_target_x < thescene.player.x+10) {
+			left_is_pressed=true;
+		}
+		if (mouse_target_x > thescene.player.x+54) {
+			right_is_pressed=true;
+		}
+		if (mouse_target_y < thescene.player.y+10) {
+			down_is_pressed=true;
+		}
+		if (mouse_target_y > thescene.player.y+54) {
+			up_is_pressed=true;
+		}
+	}
 
     if (left_is_pressed) {
         mov_x-=1;
@@ -144,5 +188,6 @@ function react_to_control () {
     }
     thescene.player.move(mov_x,mov_y);
 }
+
 
 
